@@ -36,3 +36,12 @@ const wordUpdate = function (word) {
 };
 
 wordUpdate(word);
+
+// Event listener for 'Guess' Button
+
+guessButton.addEventListener("click", function(e) {
+    e.preventDefault();
+    const guess = letterInput.value;
+    console.log(guess);
+    letterInput.value = "";
+});
