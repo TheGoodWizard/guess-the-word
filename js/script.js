@@ -26,13 +26,13 @@ guessLetterButton.addEventListener("click", function (e) {
   e.preventDefault();
   // Empty message paragraph
   message.innerText = "";
-  // Let's grab what was entered in the input
+  // Grabs input.
   const guess = letterInput.value;
-  // Let's make sure that it is a single letter
+  // Checks to make sure that it is a single letter
   const goodGuess = validateInput(guess);
 
   if (goodGuess) {
-    // We've got a letter! Let's guess!
+    
     makeGuess(guess);
   }
   letterInput.value = "";
@@ -41,16 +41,16 @@ guessLetterButton.addEventListener("click", function (e) {
 const validateInput = function (input) {
   const acceptedLetter = /[a-zA-Z]/;
   if (input.length === 0) {
-    // Is the input empty?
+    // Checks to see if user input is empty.
     message.innerText = "Please enter a letter.";
   } else if (input.length > 1) {
-    // Did you type more than one letter?
+    // Checks to see if more than one letter was typed.
     message.innerText = "Please enter a single letter.";
   } else if (!input.match(acceptedLetter)) {
-    // Did you type a number, a special character or some other non letter thing?
+    // Checks the properties of the inputed character.
     message.innerText = "Please enter a letter from A to Z.";
   } else {
-    // We finally got a single letter, omg yay
+    // Checks to see if we got a single letter.
     return input;
   }
 };
@@ -62,5 +62,17 @@ const makeGuess = function (guess) {
   } else {
     guessedLetters.push(guess);
     console.log(guessedLetters);
+    showGuessedLetters();
+    updateWordInProgress(guessedLetters);
   }
+};
+
+const showGuessedLetters = function () {
+    // Goes about clearing list.
+    guessedLettersElement.innerHTML = "";
+    for (const letter of guessedLetters) {
+        const li = document.createElement("li");
+        li.innerText = letter;
+        guessedLettersElement.append(li);
+    }
 };
