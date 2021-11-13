@@ -45,3 +45,31 @@ guessButton.addEventListener("click", function(e) {
     console.log(guess);
     letterInput.value = "";
 });
+
+// Input validator
+const validateInput = function(input) {
+    const acceptedLetter = /[a-zA-Z]/;
+    if (input.length === 0) {
+        // Checks to see if input is empty
+        message.innerText = "Please enter a letter.";
+    } else if (input.length > 1 ) {
+        // Checks to see if more than one letter was typed.
+        message.innerText = "Please enter a single letter.";
+    } else if (!input.match(acceptedLetter)) {
+        // Checks to see if user typed a number, a special character or some alternative non-letter thing.
+        message.innerText = "Please enter a letter from A to Z.";
+    } else {
+        // Should now be receiving a single letter. 
+        return input;
+    }
+};
+
+const makeGuess = function (guess) {
+    guess = guess.toUpperCase();
+    if (guessedLetters.includes(guess)) {
+        message.innerText = "You already guessed taht letter, silly.  Try again.";
+    } else {
+        guessedLetters.push(guess);
+        console.log(guessedLetters);
+    }
+};
