@@ -76,3 +76,30 @@ const showGuessedLetters = function () {
         guessedLettersElement.append(li);
     }
 };
+
+// Function that updates the 'word in progress'. 
+
+const updateWordProgress = function (guessedLetters) {
+    const wordUpper = word.toUpperCase();
+    const wordArray = wordUpper.split("");
+    const revealWord = [];
+    for (const letter of wordArray) {
+        if (guessedLetters.includes(letter)) {
+            revealWord.push(letter.toUpperCase());
+        } else {
+            revealWorld.push("●");
+        }
+    }
+    // console.log(revealWord);
+    wordInProgress.innerText = revealWord.join("");
+    checkIfWin();
+};
+
+// Function that checks to see if player won. 
+
+const checkIfWin = function () {
+    if (word.toUpperCase() === wordInProgress.innerText) {
+        message.classList.add("win");
+        message.innerHTML = `<p class="highlight">You guessed the correct word! Congrats!</p>`;
+    }
+};
