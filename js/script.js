@@ -28,13 +28,13 @@ getWord();
 const placeholder = function (word) {
   const placeholderLetters = [];
   for (const letter of word) {
-    // console.log(letter);
+    console.log(letter);
     placeholderLetters.push("●");
   }
   wordInProgress.innerText = placeholderLetters.join("");
 };
 
-
+placeholder(word);
 
 guessLetterButton.addEventListener("click", function (e) {
   e.preventDefault();
